@@ -19,3 +19,9 @@ int main() {
 int yywrap() {
     return 1;
 }
+
+###
+flex lexer.l
+gcc lex.yy.c -o lexer -ll
+echo "a = b + 123" | ./lexer
+###
