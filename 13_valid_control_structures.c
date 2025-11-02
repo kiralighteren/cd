@@ -1,3 +1,5 @@
+// control_check.c
+
 #include <stdio.h>
 #include <string.h>
 
@@ -31,3 +33,9 @@ int main() {
 
     return 0;
 }
+
+###
+gcc control_check.c -o control_check
+echo "for(i=0;i<10;i++)" | ./control_check
+# Output: Valid 'for' loop syntax.
+###
