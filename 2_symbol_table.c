@@ -1,3 +1,5 @@
+// symbol_table.c
+
 #include <stdio.h>
 #include <string.h>
 
@@ -55,3 +57,8 @@ int main() {
     display();
     return 0;
 }
+
+###
+gcc symbol_table.c -o symtab
+./symtab
+###
