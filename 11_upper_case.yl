@@ -1,0 +1,52 @@
+### pattern.l
+
+%{
+#include "pattern.tab.h"
+%}
+
+%%
+
+[A-Z][A-Za-z0-9]{5}     { return VALID; }
+.|\n                    { return INVALID; }
+
+%%
+int yywrap() { return 1; }
+
+### pattern.y
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+
+int yylex(void);
+void yyerror(const char *s);
+%}
+
+%token VALID INVALID
+
+%%
+
+input:
+      VALID      { printf("Valid pattern\n"); }
+    | INVALID    { printf("Invalid pattern\n"); }
+    ;
+
+%%
+
+void yyerror(const char *s) {
+    fprintf(stderr, "Error: %s\n", s);
+}
+
+int main() {
+    printf("Enter a string: ");
+    yyparse();
+    return 0;
+}
+
+
+###
+flex pattern.l
+bison -d pattern.y
+gcc lex.yy.c pattern.tab.c -o pattern
+echo "ABC123" | ./pattern
+###
