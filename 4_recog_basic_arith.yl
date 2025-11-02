@@ -1,0 +1,60 @@
+### parser.y
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+int yylex();
+void yyerror(char *s);
+%}
+
+%token NUMBER
+%left '+' '-'
+%left '*' '/'
+
+%%
+
+expr: expr '+' expr { printf("Valid Expression: Addition\n"); }
+    | expr '-' expr { printf("Valid Expression: Subtraction\n"); }
+    | expr '*' expr { printf("Valid Expression: Multiplication\n"); }
+    | expr '/' expr { printf("Valid Expression: Division\n"); }
+    | NUMBER        { printf("Valid Number\n"); }
+    | '(' expr ')'  { printf("Valid Parentheses\n"); }
+    ;
+
+%%
+
+void yyerror(char *s) {
+    printf("Error: %s\n", s);
+}
+
+int main() {
+    printf("Enter arithmetic expression: ");
+    yyparse();
+    return 0;
+}
+
+### lex.l
+
+%{
+#include "y.tab.h"
+%}
+
+%%
+
+[0-9]+      { yylval = atoi(yytext); return NUMBER; }
+[ \t]       ;
+\n          return 0;
+.           return yytext[0];
+
+%%
+
+int yywrap() {
+    return 1;
+}
+
+###
+yacc -d parser.y        # produces y.tab.c and y.tab.h
+lex lex.l               # produces lex.yy.c
+gcc y.tab.c lex.yy.c -o parser
+echo "2 + 3 * 4" | ./parser
+###
