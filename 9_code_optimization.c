@@ -1,3 +1,5 @@
+// optimize.c
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -82,3 +84,9 @@ int main() {
     }
     return 0;
 }
+
+###
+gcc optimize.c -o optimize
+./optimize
+# feed the intermediate code lines as prompted
+###
