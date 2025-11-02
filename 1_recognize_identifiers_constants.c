@@ -1,3 +1,5 @@
+/// lexical.c
+
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -28,3 +30,8 @@ int main() {
     }
     return 0;
 }
+
+###
+gcc lexical.c -o lexical
+./lexical
+###
