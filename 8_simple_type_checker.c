@@ -1,3 +1,5 @@
+// type_checker.c
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -59,3 +61,9 @@ int main() {
     }
     return 0;
 }
+
+###
+gcc type_checker.c -o type_checker
+./type_checker
+# follow prompts; example input in PDF shows semantics checks
+###
