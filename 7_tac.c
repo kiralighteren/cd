@@ -1,3 +1,5 @@
+// tac.c
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -42,3 +44,9 @@ int main() {
     generateTAC(postfix);
     return 0;
 }
+
+###
+gcc tac.c -o tac
+./tac
+# input: ab+c*
+###
