@@ -1,3 +1,5 @@
+### machine_gen.c
+
 #include <stdio.h>
 #include <string.h>
 
@@ -37,3 +39,9 @@ int main() {
     }
     return 0;
 }
+
+###
+gcc machine_gen.c -o machine_gen
+./machine_gen
+# enter intermediate code lines like: T1 = A + B
+###
